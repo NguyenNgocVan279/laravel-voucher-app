@@ -43,7 +43,7 @@ return [
 
     'features' => [
         // Features::termsAndPrivacyPolicy(),
-        // Features::profilePhotos(),
+        Features::profilePhotos(), // Edit 28/10/2021
         // Features::api(),
         // Features::teams(['invitations' => true]),
         Features::accountDeletion(),
