@@ -15,7 +15,9 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('category_name');
+            $table->string('category_slug');
+            $table->string('category_icon');
             $table->nestedSet();
             $table->timestamps();
         });
@@ -28,6 +30,7 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
+        //Schema::dropIfExists('categories');
         Schema::table('table', function (Blueprint $table) {
             $table->dropNestedSet();
         });

@@ -5,81 +5,81 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\CategoryRequest;
+use Illuminate\Support\Str; //Use for slug
+
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    // Function to Show Category
+    public function CategoryView() {
+        $categories = Category::with('ancestors')->get()->toFlatTree();
+        return view('backend.category.category', compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    // Function to Create and Store Category
+    public function CategoryStore(CategoryRequest $request) {
+
+        $category = Category::create([
+            'category_name' => $request->category_name,
+            'category_slug' => Str::slug($request->category_name, '-'),
+            'category_icon' => $request->category_icon,
+        ]);
+
+        if($request->parent && $request->parent !== 'none'){
+            // Difine the parent for new created category
+            $node = Category::find($request->parent);
+
+            $node->appendNode($category);
+        }
+
+        $notification = array (
+            //Sử dụng toastr.css và toastr.min.js được đính kèm trong file "admin_master.blade.php"
+            'message' => 'Tạo danh mục thành công',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification); 
+    } 
+
+    // Function to Show Category Edit Page
+    public function CategoryEdit($id) {
+        $categories = Category::with('ancestors')->get();
+        $category = Category::findOrFail($id);
+        return view('backend.category.category_edit', compact('category','categories'));
+    }
+    
+    // Function to Update Category
+    public function CategoryUpdate(CategoryRequest $request, $id) {
+        
+        Category::findOrFail($id)->update([
+            'category_name' => $request->category_name,
+            'category_slug' => Str::slug($request->category_name, '-'),
+            'category_icon' => $request->category_icon,
+        ]);
+
+        // Have not update parent category yet
+        // Will code here - 31/10/2021
+
+        $notification = array (
+            'message' => 'Cập nhật danh mục thành công',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.category')->with($notification);        
+    } 
+    
+    // Function to Delete Category
+    public function CategoryDelete($id) {
+        
+        $node = Category::findOrFail($id);
+        $node->delete();
+
+        $notification = array (          
+            'message' => 'Xoá danh mục thành công!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Category $category)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Category $category)
-    {
-        //
-    }
 }

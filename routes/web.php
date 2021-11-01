@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 
+use App\Http\Controllers\CategoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +25,7 @@ Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function() {
     Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
 });
 
-// Admin Routes
+//========== Admin Routes
 
 Route::middleware(['auth:admin'])->group(function(){
     
@@ -35,8 +37,24 @@ Route::middleware(['auth:admin'])->group(function(){
 
 }); // End Middleware Admin
 
+//=========== Admin Category All Routes
+Route::middleware(['auth:admin'])->prefix('category')->group(function() {
+    
+    Route::get('/view', [CategoryController::class, 'CategoryView'])->name('all.category');
 
-// Users Routes
+    Route::post('/store', [CategoryController::class, 'CategoryStore'])->name('category.store');
+
+    Route::get('/edit/{id}', [CategoryController::class, 'CategoryEdit'])->name('category.edit');
+
+    Route::post('/update/{id}', [CategoryController::class, 'CategoryUpdate'])->name('category.update');
+
+    Route::get('/delete/{id}', [CategoryController::class, 'CategoryDelete'])->name('category.delete');
+
+
+}); // Admin Category All Routes
+
+
+//=========== Users Routes
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');

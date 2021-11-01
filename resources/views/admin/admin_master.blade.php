@@ -16,6 +16,10 @@
 	<!-- Style-->  
 	<link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
 	<link rel="stylesheet" href="{{ asset('backend/css/skin_color.css') }}">
+
+	<!--To display Toater Message - 30/10/2021 -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+	<!--End - To display Toater Message - 30/10/2021 -->
      
   </head>
 
@@ -316,6 +320,37 @@
 	<!-- Template Admin App -->
 	<script src="{{ asset('backend/js/template.js') }}"></script>
 	<script src="{{ asset('backend/js/pages/dashboard.js') }}"></script>
+
+	<!--To display Toater Message - 31/10/2021-->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<script>
+	@if(Session::has('message'))
+	var type = "{{ Session::get('alert-type','info') }}"
+	switch(type){
+		case 'info':
+		toastr.info(" {{ Session::get('message') }} ");
+		break;
+
+		case 'success':
+		toastr.success(" {{ Session::get('message') }} ");
+		break;
+
+		case 'warning':
+		toastr.warning(" {{ Session::get('message') }} ");
+		break;
+
+		case 'error':
+		toastr.error(" {{ Session::get('message') }} ");
+		break; 
+	}
+	@endif 
+	</script>
+	<!-- End - To display Toater Message - 31/10/2021 -->
+
+	<!--Sweetalert2 - Hiển thị PopUp xoá dữ liệu - 31/10/2021-->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>	
+	<script src="{{ asset('backend/js/delete_popup.js') }}"></script> <!--Tách hàm sang file delete_popup.js - 20/07/2021-->
+	<!--End Sweetalert2 - 31/10/2021-->
 	
 </body>
 </html>

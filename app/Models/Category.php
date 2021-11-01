@@ -10,5 +10,19 @@ class Category extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'category_name',
+        'category_slug',
+        'category_icon',
+    ];
+
+    /**
+     * Instruction of Nestedset Document.
+     */
     use NodeTrait;
 }
