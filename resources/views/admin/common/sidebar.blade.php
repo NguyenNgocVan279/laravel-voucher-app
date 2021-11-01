@@ -53,6 +53,10 @@
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
+          <ul class="treeview-menu">
+            <li class="{{ $route == 'list.post'? 'active':'' }}"><a href="{{ route('list.post') }}"><i class="ti-more"></i>List of Post</a></li>
+            <li class="{{ $route == 'add.post'? 'active':'' }}"><a href="{{ route('add.post') }}"><i class="ti-more"></i>Add New Post</a></li>
+          </ul>
         </li>
       </ul>
     </section>

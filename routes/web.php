@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +52,24 @@ Route::middleware(['auth:admin'])->prefix('category')->group(function() {
     Route::get('/delete/{id}', [CategoryController::class, 'CategoryDelete'])->name('category.delete');
 
 
-}); // Admin Category All Routes
+}); //End: Admin Category All Routes
+
+//=========== Admin Post All Routes
+Route::middleware(['auth:admin'])->prefix('post')->group(function() {
+    
+    Route::get('/list/post', [PostController::class, 'ListPost'])->name('list.post');
+
+    Route::get('/add/post', [PostController::class, 'AddPost'])->name('add.post');
+
+    Route::post('/post/store', [PostController::class, 'PostStore'])->name('post.store');
+
+    Route::get('/post/edit/{id}', [PostController::class, 'PostEdit'])->name('post.edit');
+
+    Route::post('/post/update/{id}', [PostController::class, 'PostUpdate'])->name('post.update');
+
+    Route::get('/post/delete/{id}', [PostController::class, 'PostDelete'])->name('post.delete');
+
+}); //End: Admin Post All Routes
 
 
 //=========== Users Routes

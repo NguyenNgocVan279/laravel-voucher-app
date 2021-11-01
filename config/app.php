@@ -163,8 +163,9 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Package Service Providers...
+         * Package Service Providers...Thêm vào khi cài đặt các Package
          */
+        Intervention\Image\ImageServiceProvider::class, // 01/11/2021
 
         /*
          * Application Service Providers...
@@ -230,6 +231,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        // Thêm vào khi cài đặt các Package
+        'Image' => Intervention\Image\Facades\Image::class, // 01/11/2021
 
     ],
 
