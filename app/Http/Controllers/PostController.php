@@ -21,11 +21,9 @@ class PostController extends Controller
 
     
     // Function to Open Page for Adding New Post
-    public function AddPost() {
-      
+    public function AddPost() {      
         $post = Post::latest()->get();
         return view('backend.post.post_add', compact('post'));
-
     }
 
     
@@ -140,5 +138,14 @@ class PostController extends Controller
 
         return redirect()->back()->with($notification);
     } 
+
+    // Function to Add Category for Post
+    public function AddCatForPost($id){
+        $post = Post::findOrFail($id);
+        $allCategories = Category::all();
+        $usedCategories = $post->categories;
+        $availableCategories = $allCategories->diff($usedCategories);
+        return view('backend.post.post_cat_add', compact('post','allCategories','usedCategories','availableCategories'));
+    }
 
 }

@@ -54,7 +54,7 @@
                         <textarea id="editor1" name="post_content" rows="10" cols="80" required="" placeholder="Nhập nội dung bài viết tại đây..."></textarea>
                     </div>
                 </div>
-            </div> <!--end col md 6 -->
+            </div> <!--end col md 12 -->
         </div> <!--end 2rd row-->
 
         <div class="row"> <!--start 3rd row-->

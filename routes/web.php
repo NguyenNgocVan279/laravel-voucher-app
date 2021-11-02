@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\categoryPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +69,12 @@ Route::middleware(['auth:admin'])->prefix('post')->group(function() {
     Route::post('/post/update/{id}', [PostController::class, 'PostUpdate'])->name('post.update');
 
     Route::get('/post/delete/{id}', [PostController::class, 'PostDelete'])->name('post.delete');
+
+    Route::get('/post/addcat/{id}', [PostController::class, 'AddCatForPost'])->name('post.addcat');
+
+    Route::get('/post/{post_id}/category/{category_id}/attach', [categoryPostController::class, 'attachCategory'])->name('post.attach_category');
+
+    Route::get('/post/{post_id}/category/{category_id}/detach', [categoryPostController::class, 'detachCategory'])->name('post.detach_category');
 
 }); //End: Admin Post All Routes
 

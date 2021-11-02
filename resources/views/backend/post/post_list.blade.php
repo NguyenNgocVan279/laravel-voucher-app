@@ -34,9 +34,15 @@
                                         <td>
                                             {{ $item->post_title }}
                                         </td>
-                                        <td>---</td>
-                                        <td width="15%">
-                                            <a href="{{ route('post.edit', $item->id) }}" class="btn btn-info" title="Sửa vài viết"><i class="fa fa-pencil"></i></a>
+                                        <td>
+                                            @foreach ($item->categories as $category)
+                                            {{ $category->category_name }} <br/>
+                                            @endforeach
+                                            
+                                        </td>
+                                        <td width="20%">
+                                            <a href="{{ route('post.addcat', $item->id) }}" class="btn btn-success" title="Thêm danh mục cho bài viết"><i class="fa fa-plus"></i></a>
+                                            <a href="{{ route('post.edit', $item->id) }}" class="btn btn-info" title="Sửa bài viết"><i class="fa fa-pencil"></i></a>
                                             <a href="{{ route('post.delete', $item->id) }}" class="btn btn-danger" title="Xoá bài viết" id="delete"><i class="fa fa-trash"></i></a>
                                         </td>              
                                     </tr>

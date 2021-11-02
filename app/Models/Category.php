@@ -25,4 +25,8 @@ class Category extends Model
      * Instruction of Nestedset Document.
      */
     use NodeTrait;
+
+    public function posts() {
+        return $this->belongsToMany(Post::class);
+    }
 }
