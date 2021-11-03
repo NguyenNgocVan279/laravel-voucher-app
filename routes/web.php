@@ -6,6 +6,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\categoryPostController;
+use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\GetVoucherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +85,16 @@ Route::middleware(['auth:admin'])->prefix('post')->group(function() {
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+// ================= Frontend Routes
+Route::get('/', [IndexController::class, 'index']);
+
+Route::get('/voucher/all-voucher', [GetVoucherController::class, 'GetAllVoucher'])->name('all.voucher');
+
+Route::get('/voucher/details/{id}/{slug}', [IndexController::class, 'VoucherDetails']);
+
+
+//===========End: Users Routes
 
 
 
