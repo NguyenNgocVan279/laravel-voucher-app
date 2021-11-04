@@ -55,7 +55,13 @@
                                         40% </div>
                                 </div>
                                 <div>
+                                    @auth
                                     <button type="submit" class="sea" data-toggle="modal" data-target="#exampleModal">Get Your Voucher Code</button>
+                                    @else
+                                    <a href="{{ route('login') }}">
+                                        <button type="text" class="sea">Login To Get Code</button>
+                                    </a>
+                                    @endauth
                                 </div>
                                 <div class="discount-ribbon">
                                     40% </div>
@@ -78,7 +84,7 @@
                             <span class="deal-stat-text">Views</span>
                         </div>
                         <div class="deal-stat">
-                            <span class="deal-stat-number">2.500</span>
+                            <span class="deal-stat-number">50</span>
                             <span class="deal-stat-text">Reading Users</span>
                         </div>
                     </div><!-- end deal-stats -->
