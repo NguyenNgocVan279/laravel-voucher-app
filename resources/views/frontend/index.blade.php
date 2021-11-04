@@ -210,7 +210,7 @@
                         </h4>
                         <ul class="nav nav-stacked list-menu">
                             @foreach ($categories as $category)
-                            <li><a href="#"><span
+                            <li><a href="{{ url('category/voucher/'.$category->id.'/'.$category->category_slug) }}"><span
                                 class="lnr lnr-store ico"></span><span>{{ $category->category_name }}</span><span
                                 class="number-counter">{{ count($category->posts) }}</span></span></a>
                             </li>

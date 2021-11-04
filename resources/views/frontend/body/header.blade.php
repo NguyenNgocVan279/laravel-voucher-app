@@ -13,31 +13,6 @@
                     </div><!-- Header Top Brand Part End -->
                 </div>
                 <div class="col-md-8 col-sm-10 col-xs-8 pull-right">
-                    <!----------- Top Menu -------->
-                    <div class="top-bar animate-dropdown">
-                        <div class="container" >
-                        <div class="header-top-inner" >
-                            <div class="cnt-account" >
-                            <ul class="list-unstyled">
-                                <li >
-                                @auth
-                                    <a href="{{ route('dashboard') }}"><i class="icon fa fa-user"></i>
-                                    Xin chào {{ Auth::user()->name }}
-                                    </a>
-                                @else
-                                    <a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>
-                                    Đăng nhập
-                                    </a>
-                                    <a href="{{ route('register') }}"><i class="icon fa fa-user"></i> Đăng ký</a>
-                                @endauth
-                                </li>
-                            </ul>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div><!-- /.header-top-inner --> 
-                        </div><!-- /.container --> 
-                    </div><!-- /.header-top --> 
-
                     <!-- Header Bottom Part Start -->
                     <div class="cbx-header-bottom">
                         <div class="row">
@@ -54,13 +29,43 @@
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                     <ul class="nav navbar-nav">
                                         <li class="active">
-                                            <a href="{{ url('/') }}">Trang chủ </a>
+                                            <a href="{{ url('/') }}">TRANG CHỦ </a>
                                         </li>
-                                        <li><a href="{{ route('all.voucher') }}">Vouchers</a></li>
-                                        <li><a href="#">Danh mục</a></li>
-                                        <li><a href="#">Blog</a></li>
-                                        <li><a href="#">Liên hệ</a></li>
-                                        <li><a href="#">Đăng Voucher</a> </li>
+                                        <li><a href="{{ route('all.voucher') }}">VOUCHERS</a></li>
+                                        
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                                                DANH MỤC
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="margin-top:-20px; border:none;">
+                                                <?php
+                                                $categories = App\Models\Category::orderBy('id')->get();
+                                                ?>
+                                                @foreach ($categories as $category)
+                                                <div style="padding-left: 15px; padding-bottom:3px; border-bottom: 1px solid #ccc;">
+                                                    <a class="dropdown-item" href="{{ url('category/voucher/'.$category->id.'/'.$category->category_slug) }}">{{ $category->category_name }}</a>
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                        </li>
+                                        <li><a href="#">BLOG</a></li>
+                                        <li><a href="#">LIÊN HỆ</a></li>
+                                            @auth
+                                            <li >
+                                                <a href="{{ route('dashboard') }}"><i class="icon fa fa-user"></i>
+                                                Xin chào {{ Auth::user()->name }}
+                                                </a>
+                                            </li>
+                                            @else
+                                            <li>
+                                                <a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>
+                                                Đăng nhập
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('register') }}"><i class="icon fa fa-user"></i> Đăng ký</a>
+                                            </li>
+                                            @endauth
                                     </ul>
                                 </div><!-- /.navbar-collapse -->
                             </nav>

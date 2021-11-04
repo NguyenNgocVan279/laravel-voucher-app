@@ -30,7 +30,7 @@
                                 @endphp
                                 @foreach ($categories as $category)
                                 <li>
-                                    <a href="#"><span class="widget-list-number-counter">{{ count($category->posts) }}</span>
+                                    <a href="{{ url('category/voucher/'.$category->id.'/'.$category->category_slug) }}"><span class="widget-list-number-counter">{{ count($category->posts) }}</span>
                                     {{ $category->category_name }}
                                     </a>
                                 </li>

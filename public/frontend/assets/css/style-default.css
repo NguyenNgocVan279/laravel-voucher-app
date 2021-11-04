@@ -445,7 +445,6 @@ a.modalAnchor {
     font-size: 13px;
     font-weight: initial;
     line-height: 27px;
-    text-transform: uppercase;
     -webkit-transition: all 0.2s ease-out;
     -moz-transition: all 0.2s ease-out;
     -o-transition: all 0.2s ease-out;

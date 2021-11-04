@@ -29,4 +29,12 @@ class Category extends Model
     public function posts() {
         return $this->belongsToMany(Post::class);
     }
+
+    // Function to filter Posts by Category
+    public function filteredPosts() {
+        return $this->belongsToMany(Post::class)
+            ->wherePivot('category_id', $this->id)
+            ->orderBy('updated_at', 'DESC');
+    }
+
 }

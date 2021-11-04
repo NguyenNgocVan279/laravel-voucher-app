@@ -11,12 +11,16 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="section-title-block-banner">
-                    <h1 class="section-title"> All Vouchers</h1>
+                    <h1 class="section-title"> Category Vouchers</h1>
                     <div class="breadcrumbs">
                         <span class="first-item">
                             <a href="{{ url('/') }}">Home</a></span>
                         <span class="separator">&gt;</span>
-                        <span class="last-item">All Vouchers</span>
+                        <span class="last-item">
+                            @foreach ($breadcat as $item)
+                                {{ $item->category_name }}
+                            @endforeach
+                        </span>
                     </div>
                 </div>
             </div>

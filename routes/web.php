@@ -103,6 +103,8 @@ Route::get('/voucher/all-voucher', [GetVoucherController::class, 'GetAllVoucher'
 
 Route::get('/voucher/details/{id}/{slug}', [IndexController::class, 'VoucherDetails']);
 
+Route::get('/category/voucher/{cat_id}/{slug}', [GetVoucherController::class, 'GetCatVoucher']);
+
 
 //===========End: Users Routes
 

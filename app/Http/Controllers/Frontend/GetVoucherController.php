@@ -16,4 +16,15 @@ class GetVoucherController extends Controller
         $vouchers = Post::latest()->paginate(6);
         return view('frontend.voucher.list_view_voucher', compact('vouchers','categories'));
     }
+
+    // Function to get Voucher by Category
+    public function GetCatVoucher(Request $request, $cat_id,$slug){
+        
+        $breadcat = Category::where('id',$cat_id)->get();
+        $categories = Category::orderBy('id','ASC')->get();
+        $vouchers = Category::findOrFail($cat_id)->filteredPosts()->paginate(6);
+
+        return view('frontend.voucher.list_cat_voucher', compact('vouchers','breadcat','categories'));
+    }
+
 }
