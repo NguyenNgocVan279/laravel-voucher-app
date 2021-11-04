@@ -24,11 +24,10 @@ class IndexController extends Controller
     // Function to show Voucher details
     public function VoucherDetails($id,$slug) {
 
-        $users = User::all();
-
         // Update read-count of post
         Post::find($id)->increment('read_count');
-        
+
+        $users = User::all();
         $voucher = Post::findOrFail($id);
 
         return view('frontend.voucher.voucher_details', compact('voucher','users'));
