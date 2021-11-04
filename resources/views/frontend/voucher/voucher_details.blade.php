@@ -55,7 +55,7 @@
                                         40% </div>
                                 </div>
                                 <div>
-                                    <button type="submit" class="sea" data-toggle="modal" data-target="#exampleModal">Show Code</button>
+                                    <button type="submit" class="sea" data-toggle="modal" data-target="#exampleModal">Get Your Voucher Code</button>
                                 </div>
                                 <div class="discount-ribbon">
                                     40% </div>
@@ -74,7 +74,7 @@
                 <div class="single-deal-content">
                     <div class="deal-stats">
                         <div class="deal-stat">
-                            <span class="deal-stat-number">250.850</span>
+                            <span class="deal-stat-number">{{ $voucher->read_count }}</span>
                             <span class="deal-stat-text">Views</span>
                         </div>
                         <div class="deal-stat">
@@ -210,12 +210,42 @@
             </div><!-- end col-sm-8 col-md-9 -->
 
             <div class="col-sm-4 col-md-3">
+                <!--Track the read User -->
+                <div class="widget" style="width: 100%">
+                    <h2 class="widget-title">Track User Online</h2>
+                    <table class="table" >
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($users as $user)
+                            <tr>
+                                <td style="font-size: 10px;">{{ $user->name }}</td>
+                                <td style="font-size: 10px;">{{ $user->email }}</td>
+                                <td style="font-size: 11px;">
+                                    @if ($user->isOnline())
+                                    <li class="text-danger" style="list-style-type: circle; font-family: bold;">Online</li>
+                                    @else
+                                    <li class="text-muted" style="list-style-type: circle;">Offline</li>
+                                    @endif
+                                </td>
+                              </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div><!-- end single-deal-company -->
+                <!--End: Track the read User -->
+                
                 <div class="widget">
                     <h2 class="widget-title">Company</h2>
-                    <a href="store-details.html">
+                    <a href="#">
                         <img width="300" height="150" src="{{ asset($voucher->post_image) }}" alt="">
                     </a>
-                    <h5><a href="store-details.html" class="h-store"><span>Nature</span></a></h5>
+                    <h5><a href="#" class="h-store"><span>Nature</span></a></h5>
                     <p class="text">
                         {!! Str::limit($voucher->post_content,250)  !!} 
                     </p>

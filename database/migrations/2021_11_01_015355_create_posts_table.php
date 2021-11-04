@@ -21,8 +21,7 @@ class CreatePostsTable extends Migration
             $table->text('post_content');
             $table->integer('voucher_enabled')->nullable();
             $table->integer('voucher_qty')->nullable();
-            $table->integer('read_count')->nullable();
-            $table->integer('online_user')->nullable();
+            $table->integer('read_count');
             $table->timestamps();
         });
     }

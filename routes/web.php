@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 
@@ -8,6 +9,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\categoryPostController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\GetVoucherController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +22,9 @@ use App\Http\Controllers\Frontend\GetVoucherController;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
-});
+}); */
 
 Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function() {
     Route::get('/login', [AdminController::class, 'loginForm']);
@@ -82,9 +84,17 @@ Route::middleware(['auth:admin'])->prefix('post')->group(function() {
 
 
 //=========== Users Routes
-Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
+/* Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
+})->name('dashboard'); */
+
+Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
+    $id = Auth::user()->id;
+    $user = User::find($id);
+    return view('dashboard', compact('user'));
 })->name('dashboard');
+
+
 
 // ================= Frontend Routes
 Route::get('/', [IndexController::class, 'index']);

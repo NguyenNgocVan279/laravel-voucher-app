@@ -13,7 +13,7 @@ class GetVoucherController extends Controller
     // Function to show List of Voucher
     public function GetAllVoucher(){
         $categories = Category::orderBy('id','ASC')->get();
-        $vouchers = Post::latest()->paginate(3);
+        $vouchers = Post::latest()->paginate(6);
         return view('frontend.voucher.list_view_voucher', compact('vouchers','categories'));
     }
 }

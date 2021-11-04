@@ -10,10 +10,34 @@
                             <img src="{{ asset('assets/img/logo/logo-dark.png') }}" alt="VoucherApp" class="img-responsive"
                                 width="164" />
                         </a>
-                    </div>
-                    <!-- Header Top Brand Part End -->
+                    </div><!-- Header Top Brand Part End -->
                 </div>
                 <div class="col-md-8 col-sm-10 col-xs-8 pull-right">
+                    <!----------- Top Menu -------->
+                    <div class="top-bar animate-dropdown">
+                        <div class="container" >
+                        <div class="header-top-inner" >
+                            <div class="cnt-account" >
+                            <ul class="list-unstyled">
+                                <li >
+                                @auth
+                                    <a href="{{ route('dashboard') }}"><i class="icon fa fa-user"></i>
+                                    Xin chào {{ Auth::user()->name }}
+                                    </a>
+                                @else
+                                    <a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>
+                                    Đăng nhập
+                                    </a>
+                                    <a href="{{ route('register') }}"><i class="icon fa fa-user"></i> Đăng ký</a>
+                                @endauth
+                                </li>
+                            </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div><!-- /.header-top-inner --> 
+                        </div><!-- /.container --> 
+                    </div><!-- /.header-top --> 
+
                     <!-- Header Bottom Part Start -->
                     <div class="cbx-header-bottom">
                         <div class="row">

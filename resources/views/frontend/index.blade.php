@@ -251,7 +251,7 @@
                     <div class="coupon-content">
                         <div class="card-deal-info">
                             <!-- Title -->
-                            <h2 class="card-deal-title"><a href="#">{{ $voucher->post_title }}</a></h2>
+                            <h2 class="card-deal-title"><a href="{{ url('voucher/details/'.$voucher->id.'/'.$voucher->post_slug) }}">{{ $voucher->post_title }}</a></h2>
                             <!-- Category -->
                             <div class="card-deal-categories ">
                                 <p>

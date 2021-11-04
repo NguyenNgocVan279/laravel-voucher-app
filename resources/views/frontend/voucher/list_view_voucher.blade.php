@@ -133,15 +133,15 @@
                                             <div class="coupon-thumb">
                                                 <img src="{{ asset($voucher->post_image) }}" alt="" class="img-responsive">
                                                 <div class="discount-deals-ribbon">30%</div>
-                                                <a href="#" class="btn btn-brand">Xem Voucher</a>
+                                                <a href="{{ url('voucher/details/'.$voucher->id.'/'.$voucher->post_slug) }}" class="btn btn-brand">Xem Voucher</a>
                                             </div>
                                             <div class="coupon-content">
                                                 <div class="card-deal-info">
-    <h2 class="card-deal-title">
-        <a href="{{ url('voucher/details/'.$voucher->id.'/'.$voucher->post_slug) }}">
-            {{ $voucher->post_title }}
-        </a>
-    </h2>
+                                                    <h2 class="card-deal-title">
+                                                        <a href="{{ url('voucher/details/'.$voucher->id.'/'.$voucher->post_slug) }}">
+                                                            {{ $voucher->post_title }}
+                                                        </a>
+                                                    </h2>
                                                     <div class="card-deal-categories">
                                                         <p>
                                                             @foreach ($voucher->categories as $category)

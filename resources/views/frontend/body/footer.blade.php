@@ -46,12 +46,12 @@
                         <h4 class="widget-title">Nổi bật</h4>
                         <ul class="list-unstyled">
                             @php
-                                $vouchers = App\Models\Post::latest()->get();
+                                $vouchers = App\Models\Post::latest()->limit('3')->get();
                             @endphp
                             @foreach ($vouchers as $voucher)
                             <li>
                                 <div class="tweet-content">
-                                    <a href="" class="twitter-user">{{ $voucher->post_title }}</a>
+                                    <a href="{{ url('voucher/details/'.$voucher->id.'/'.$voucher->post_slug) }}" class="twitter-user">{{ $voucher->post_title }}</a>
                                 </div> 
                                 <p class="tweet-time">{{ $voucher->created_at }}</p>
                             </li>
